@@ -7,11 +7,11 @@
     - registry
 
 - name: Run docker registry
-  docker:
+  docker_container:
     name: registry
     image: registry
-    state: reloaded
-    pull: always
+    state: started # Reloaded does not exist in docker_image or docker_container 
+    pull: true
     ports:
       - "5000:5000"
     restart_policy: always

@@ -38,11 +38,11 @@
     - logging
 
 - name: Run MySQL for grafana docker instance
-  docker:
+  docker_container:
     name: mysql-grafana
     image: mysql:{{ grafana_mysql_version }}
-    state: reloaded
-    pull: always
+    state: started
+    pull: true 
     volumes:
       - "{{ grafana_efs_mountpoint }}/mysql:/var/lib/mysql"
     env:
@@ -56,11 +56,11 @@
     - logging
 
 - name: Run Grafana docker instance
-  docker:
+  docker_container:
     name: grafana
     image: grafana/grafana:{{ grafana_version }}
-    state: reloaded
-    pull: always
+    state: started 
+    pull: true 
     ports:
       - "3000:3000"
     volumes:
